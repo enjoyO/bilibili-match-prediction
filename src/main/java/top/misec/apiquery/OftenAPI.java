@@ -12,7 +12,7 @@ import top.misec.utils.HttpUtil;
  * @create 2020/10/14 14:27
  */
 @Log4j2
-public class oftenAPI {
+public class OftenAPI {
 
     /**
      * @return 返回主站查询到的硬币余额，查询失败返回0.0

@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.extern.log4j.Log4j2;
 import top.misec.apiquery.ApiList;
-import top.misec.apiquery.oftenAPI;
+import top.misec.apiquery.OftenAPI;
 import top.misec.config.Config;
 import top.misec.login.Verify;
 import top.misec.utils.HttpUtil;
@@ -25,7 +25,7 @@ public class MatchGame implements Task {
     @Override
     public void run() throws InterruptedException {
 
-        if (oftenAPI.getCoinBalance() < Config.getInstance().getMinimumNumberOfCoins()) {
+        if (OftenAPI.getCoinBalance() < Config.getInstance().getMinimumNumberOfCoins()) {
             log.info("{}个硬币都没有，参加什么预测呢？任务结束", Config.getInstance().getMinimumNumberOfCoins());
             return;
         }
