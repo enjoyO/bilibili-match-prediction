@@ -15,7 +15,7 @@ public class Config {
     private boolean skipDailyTask;
     private int predictNumberOfCoins;
     private int minimumNumberOfCoins;
-
+    private boolean reverse = false;
     public static Config getInstance() {
         return CONFIG;
     }
@@ -34,6 +34,11 @@ public class Config {
                 ", predictNumberOfCoins=" + predictNumberOfCoins +
                 ", minimumNumberOfCoins=" + minimumNumberOfCoins +
                 '}';
+    }
+
+    public void configInit(String configJson) {
+        Config.CONFIG = new Gson().fromJson(configJson, Config.class);
+        log.info(Config.getInstance().toString());
     }
 
     public void configInit() {

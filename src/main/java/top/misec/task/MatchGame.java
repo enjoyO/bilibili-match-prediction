@@ -74,14 +74,18 @@ public class MatchGame implements Task {
                     JsonObject teamB = questionJson.get("details").getAsJsonArray().get(1).getAsJsonObject();
 
                     log.info("当前赔率为:  {}:{}", teamA.get("odds").getAsDouble(), teamB.get("odds").getAsDouble());
-
+                    boolean reserve = Config.getInstance().isReverse();
+                    log.info("当前配置竞猜赔率反转:{}",reserve);
                     if (teamA.get("odds").getAsDouble() >= teamB.get("odds").getAsDouble()) {
                         teamId = teamB.get("detail_id").getAsInt();
                         teamName = teamB.get("option").getAsString();
+
                     } else {
                         teamId = teamA.get("detail_id").getAsInt();
                         teamName = teamA.get("option").getAsString();
                     }
+
+
 
                     log.info("拟预测的队伍是:{},预测硬币数为:{}", teamName, coinNumber);
                     doPrediction(contestId, questionId, teamId, coinNumber);
