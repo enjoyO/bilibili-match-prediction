@@ -3,19 +3,41 @@ package top.misec;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import top.misec.config.Config;
 import top.misec.login.ServerVerify;
 import top.misec.login.Verify;
 import top.misec.task.DailyTask;
 import top.misec.task.ServerPush;
 import top.misec.utils.VersionInfo;
+import top.misec.org.slf4j.impl.StaticLoggerBinder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
 
 /**
  * @author junzhou
  */
-@Log4j2
 public class Main {
+
+    private static final Logger log;
+
+    static {
+        // 如果此标记为true，则为腾讯云函数，使用JUL作为日志输出。
+        boolean scfFlag = Boolean.getBoolean("scfFlag");
+        StaticLoggerBinder.LOG_IMPL = scfFlag ? StaticLoggerBinder.LogImpl.JUL : StaticLoggerBinder.LogImpl.LOG4J2;
+        log = LoggerFactory.getLogger( Main.class);
+        InputStream inputStream =  Main.class.getResourceAsStream("/logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(inputStream);
+        } catch (IOException e) {
+            java.util.logging.Logger.getAnonymousLogger().severe("Could not load default logging.properties file");
+            java.util.logging.Logger.getAnonymousLogger().severe(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         if (args.length < 3) {
             log.info("任务启动失败");
@@ -45,12 +67,13 @@ public class Main {
      * 用于腾讯云函数触发
      */
     public String mainHandler(KeyValueClass ignored) {
-
+        StaticLoggerBinder.LOG_IMPL = StaticLoggerBinder.LogImpl.JUL;
         String config = System.getProperty("config");
         if (null == config) {
             System.out.println("取config配置为空！！！");
             return "error config";
         }
+
         KeyValueClass kv;
         try {
             kv = new Gson().fromJson(config, KeyValueClass.class);
@@ -59,6 +82,7 @@ public class Main {
             e.printStackTrace();
             return "error json config";
         }
+
         /**
          *   读取环境变量
          */
@@ -74,6 +98,8 @@ public class Main {
         VersionInfo.printVersionInfo();
         //每日任务65经验
         Config.getInstance().configInit(new Gson().toJson(kv));
+        System.out.println(Config.getInstance());
+
         if (!Boolean.TRUE.equals(Config.getInstance().isSkipDailyTask())) {
             DailyTask dailyTask = new DailyTask();
             dailyTask.doDailyTask();
