@@ -16,6 +16,9 @@ import top.misec.push.model.PushMetaInfo;
 @Log4j2
 public final class PushHelper {
 
+    public static boolean push(Push push, PushMetaInfo metaInfo, String content) {
+        return push.doPush(metaInfo,content).isSuccess();
+    }
     /**
      * 推送
      *

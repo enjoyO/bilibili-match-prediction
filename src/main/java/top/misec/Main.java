@@ -10,6 +10,7 @@ import top.misec.login.ServerVerify;
 import top.misec.login.Verify;
 import top.misec.task.DailyTask;
 import top.misec.task.ServerPush;
+import top.misec.utils.StringUtils;
 import top.misec.utils.VersionInfo;
 import top.misec.org.slf4j.impl.StaticLoggerBinder;
 
@@ -88,9 +89,9 @@ public class Main {
          */
         Verify.verifyInit(kv.getDedeuserid(), kv.getSessdata(), kv.getBiliJct());
 
-        if (null != kv.getTelegrambottoken() && null != kv.getTelegramchatid()) {
+        if (StringUtils.isNotBlank(kv.getTelegrambottoken()) && StringUtils.isNotBlank(kv.getTelegramchatid())) {
             ServerVerify.verifyInit(kv.getTelegrambottoken(), kv.getTelegramchatid());
-        } else if (null != kv.getServerpushkey()) {
+        } else if (StringUtils.isNotBlank(kv.getServerpushkey())) {
             ServerVerify.verifyInit(kv.getServerpushkey());
         }
 

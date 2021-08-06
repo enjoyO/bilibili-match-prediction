@@ -9,6 +9,7 @@ public class ApiList {
     public static String ServerPushV2 = "https://sctapi.ftqq.com/";
     public static String ServerPushTelegram = "https://api.telegram.org/bot";
     public static String LOGIN = "https://api.bilibili.com/x/web-interface/nav";
+    public static String weixingPush = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=";
 
     /**
      * 查询主站硬币余额
