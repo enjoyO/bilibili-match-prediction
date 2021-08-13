@@ -15,7 +15,10 @@ public class Config {
     private boolean skipDailyTask;
     private int predictNumberOfCoins;
     private int minimumNumberOfCoins;
-    private boolean reverse = false;
+    //1 买赔率大的, 0-买赔率小的
+    private Integer odds;
+    //赔率相等是否购买 false 不购买, true 购买
+    private boolean equalsBuy = false;
     public static Config getInstance() {
         return CONFIG;
     }
@@ -33,6 +36,8 @@ public class Config {
                 "skipDailyTask=" + skipDailyTask +
                 ", predictNumberOfCoins=" + predictNumberOfCoins +
                 ", minimumNumberOfCoins=" + minimumNumberOfCoins +
+                ", odds=" + odds +
+                ", equalsBuy=" + equalsBuy +
                 '}';
     }
 

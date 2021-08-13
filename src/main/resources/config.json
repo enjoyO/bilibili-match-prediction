@@ -2,9 +2,14 @@
   "skipDailyTask": true,
   "predictNumberOfCoins": 15,
   "minimumNumberOfCoins": 30,
-  "reverse": false,
+  "dedeuserid": "123",
+  "sessdata": "456",
+  "biliJct": "789",
   "serverpushkey": "",
   "telegrambottoken": "",
-  "telegramchatid": ""
-
+  "telegramchatid": "",
+  "odds": 0,
+  "equalsBuy": false
 }
+
+

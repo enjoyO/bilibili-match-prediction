@@ -15,4 +15,8 @@ public class KeyValueClass {
     private String serverpushkey;
     private String telegrambottoken;
     private String telegramchatid;
+    //1 买赔率大的, 0-买赔率小的
+    private Integer odds;
+    //赔率相等是否购买 false 不购买, true 购买
+    private boolean equalsBuy = false;
 }
