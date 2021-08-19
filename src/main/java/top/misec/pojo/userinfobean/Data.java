@@ -16,7 +16,7 @@ public class Data {
     private boolean isLogin;
     private int email_verified;
     private String face;
-    private Level_info level_info;
+    private LevelInfo level_info;
     private long mid;
     private int mobile_verified;
     private double money;
@@ -31,7 +31,7 @@ public class Data {
     private int vipType;
     private int vip_pay_type;
     private int vip_theme_type;
-    private Vip_label vip_label;
+    private VipLabel vip_label;
     private int vip_avatar_subscript;
     private String vip_nickname_color;
     private Wallet wallet;

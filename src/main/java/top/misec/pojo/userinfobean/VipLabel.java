@@ -9,7 +9,7 @@ import lombok.Data;
  * @create 2020/10/11 4:21
  */
 @Data
-public class Vip_label {
+public class VipLabel {
 
     private String path;
     private String text;

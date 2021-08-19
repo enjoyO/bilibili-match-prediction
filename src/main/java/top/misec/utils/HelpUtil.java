@@ -15,9 +15,7 @@ public class HelpUtil {
     static long xor = 177451812;
     static long add = 8728348608L;
 
-    public static void main(String[] args) {
-
-    }
+    
 
     public static long power(int a, int b) {
         long power = 1;

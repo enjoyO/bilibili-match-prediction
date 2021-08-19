@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class Level_info {
+public class LevelInfo {
 
     private int current_level;
     private int current_min;
